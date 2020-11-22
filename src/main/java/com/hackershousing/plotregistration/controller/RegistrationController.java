@@ -91,20 +91,6 @@ public class RegistrationController {
     }
   }
 
-  @PutMapping("/slot/{id}")
-  public ResponseEntity<Registration> updateSlot(@PathVariable("id") String id, @RequestBody Registration slot) {
-    Optional<Registration> slotData = slotRepository.findById(id);
-
-    if (slotData.isPresent()) {
-      Registration _slot = slotData.get();
-      _slot.setFilled(slot.isFilled());
-      _slot.setSlotNumber(slot.getSlotNumber());
-      return new ResponseEntity<>(slotRepository.save(_slot), HttpStatus.OK);
-    } else {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-  }
-
   @DeleteMapping("/slots/{id}")
   public ResponseEntity<HttpStatus> deleteSlot(@PathVariable("id") String id) {
     try {
